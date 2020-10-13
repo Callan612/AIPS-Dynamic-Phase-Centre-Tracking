@@ -1,0 +1,48 @@
+# start line with # for comments
+
+#fitld for loading in full calibrated data
+fitld; datain = PWD:BM467B1.UVDATA.1
+
+#imagr for making images
+imagr; robust = 5
+imagr; niter = 200
+imagr; cellsi = 0.0001
+imagr; imsi = 512
+imagr; rashift = -0.005
+imagr; decshift = -0.011
+imagr; flux = 0.0004
+#imagr; boxfile = PWD:CLEANBOX1
+
+#splat for constructing multi source file
+splat; docal = 2
+splat; gainuse = 11
+splat; flagver = 0
+splat; doband = 1
+splat; bpver = 0
+
+#clcor for position shifting
+clcor; gainver = 1
+clcor; gainuse = 2
+
+#split for making single source file
+split; docal = 2
+split; gainuse = 2
+split; doband = -1
+split; flagver = -1
+split; aparm = 2,0
+#split; nchav = 16
+#split; chinc = 16
+
+#jmfit for fitting the peak of the image (NOT YET IMPLEMENTED)
+jmfit; dowidth = -1
+jmfit; blc = 250, 222, 1, 1, 1, 1, 1
+jmfit; trc = 272, 258, 1, 1, 1, 1, 1
+
+# miscellaneous parameters
+AIPSuserno = 60
+properMotion = 0.015
+positionAngle = 25.1
+sourceName = MJ1820+070
+obsStartTime = 0 4 51 12
+obsEndTime = 0 5 37 41
+cleanup = True
