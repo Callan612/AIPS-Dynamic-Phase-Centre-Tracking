@@ -7,12 +7,20 @@ Description:  The purpose of this script is to automate the proper motion
               remains in the same position relative to the phase centre of the 
               first time-bin, and then concatenate the time-bins into a single 
               data set. The resultant image will follow a source as it moves.
+              
+              
 Requirements: - Python 2.7
               - Updated AIPS installation
               - ParselTongue 
               - 'PMCorr.in' input file
+              
+              
 How to use:   
+
+
 TODO:         - Automate the JMFIT task to fit a peak in the final image
               - Run for multiple proper motions in a single excecution
-Author: Callan Wood (Curtin University WA)
+              
+              
+Author: Callan Wood (callan.m.wood@student.curtin.edu.au)
 Date: 17/05/20
