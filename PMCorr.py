@@ -2,18 +2,24 @@
 Description:  The purpose of this script is to automate the proper motion 
               correction of VLBI images using AIPS. It follows the process of 
               taking a calibrated data set, splitting it into an appropriate 
-              number of time-bins according to a given proper motion, shifting
-              the phase centre of each time-bin to so that a moving peak is 
-              remains in the same position relative to the phase centre of the 
+              number of time-bins according to a given proper motion (in 
+              mas/day) such that no component moves more than 1 pixel per time
+              bin, shifting the phase centre of each time-bin to so that a moving 
+              peak remains in the same position relative to the phase centre of the 
               first time-bin, and then concatenate the time-bins into a single 
               data set. The resultant image will follow a source as it moves.
 Requirements: - Python 2.7
-              - Updated AIPS installation
+              - AIPS installation
               - ParselTongue 
               - 'PMCorr.in' input file
-How to use:   
+How to use:   Modify the PMCorr.in input file and execute this script with
+              ParselTongue. The input data file needs to be the original 
+              calibrated data set with callibration tables attached. Images
+              need to be inspected within the AIPS software. This script 
+              requires an empty AIPS workspace.
 TODO:         - Automate the JMFIT task to fit a peak in the final image
               - Run for multiple proper motions in a single excecution
+              - Get AIPS TV to work
 Author: Callan Wood (Curtin University WA)
 Date: 17/05/20
 '''
@@ -24,7 +30,7 @@ from AIPSTV import AIPSTV
 import numpy as np
 
 def parseInputFile():
-    file = open('PMcorr.in','r')
+    file = open('PMCorr.in','r')
 
     # First need to find AIPSuserno
     line = file.readline()
@@ -40,9 +46,9 @@ def parseInputFile():
 
     file.seek(0)
     # AIPS tasks are created with defaults
-    fitld = AIPSTask('fitld')
-    imagr = AIPSTask('imagr')
-    split = AIPSTask('split')
+    fitld = AIPSTask('FITLD')
+    imagr = AIPSTask('IMAGR')
+    split = AIPSTask('SPLIT')
     clcor = AIPSTask('clcor')
     splat = AIPSTask('splat')
     split = AIPSTask('split')
@@ -137,7 +143,7 @@ def parseInputFile():
                 if splitLine2[0].strip() == 'chinc':
                     split.chinc = int(splitLine2[1])
                     print "split.chinc =",split.chinc   
-
+            '''
             #jmfit inputs
             if splitLine1[0] == 'jmfit':
                 splitLine2 = splitLine1[1].split('=')
@@ -152,7 +158,7 @@ def parseInputFile():
                     splitLine3 = splitLine2[1].split(',')
                     jmfit.trc = AIPSList(int(splitLine3[0]),int(splitLine3[1]))
                     print "jmfit.trc =" ,jmfit.trc
-
+            '''
 
             #Miscellaneous parameters
             splitLine2 = splitLine1[0].split('=')
@@ -246,7 +252,7 @@ o_time = e_time - s_time
 print "Observation time is:", o_time, "days"
 
 #Calculate number of time bins
-numBins = np.ceil(properMotion*o_time/(0.0001))
+numBins = np.ceil(properMotion*o_time/(imagr.cellsi[1]))
 
 #Number of bins in which there is no data
 emptyBins = 0
