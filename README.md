@@ -8,15 +8,21 @@ Description:  The purpose of this script is to automate the proper motion
               peak remains in the same position relative to the phase centre of the 
               first time-bin, and then concatenate the time-bins into a single 
               data set. The resultant image will follow a source as it moves.
+              
 Requirements: - Python 2.7
+
               - AIPS installation
+              
               - ParselTongue 
+              
               - 'PMCorr.in' input file
+              
 How to use:   Modify the PMCorr.in input file and execute this script with
               ParselTongue. The input data file needs to be the original 
               calibrated data set with callibration tables attached. Images
               need to be inspected within the AIPS software. This script 
               requires an empty AIPS workspace.
+              
 TODO:         - Automate the JMFIT task to fit a peak in the final image
               - Run for multiple proper motions in a single excecution
               - Get AIPS TV to work
