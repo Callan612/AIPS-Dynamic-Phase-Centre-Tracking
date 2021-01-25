@@ -10,11 +10,8 @@ Description:  The purpose of this script is to automate the proper motion
               data set. The resultant image will follow a source as it moves.
               
 Requirements: - Python 2.7
-
-              - AIPS installation
-              
-              - ParselTongue 
-              
+              - AIPS installation            
+              - ParselTongue               
               - 'PMCorr.in' input file
               
 How to use:   Modify the PMCorr.in input file and execute this script with
@@ -26,5 +23,6 @@ How to use:   Modify the PMCorr.in input file and execute this script with
 TODO:         - Automate the JMFIT task to fit a peak in the final image
               - Run for multiple proper motions in a single excecution
               - Get AIPS TV to work
+              
 Author: Callan Wood (Curtin University WA)
 Date: 25/1/21
