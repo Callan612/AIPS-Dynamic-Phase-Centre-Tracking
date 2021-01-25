@@ -21,7 +21,7 @@ TODO:         - Automate the JMFIT task to fit a peak in the final image
               - Run for multiple proper motions in a single excecution
               - Get AIPS TV to work
 Author: Callan Wood (Curtin University WA)
-Date: 17/05/20
+Date: 25/1/21
 '''
 from AIPS import AIPS
 from AIPSTask import AIPSTask, AIPSList
