@@ -1,4 +1,4 @@
-# AIPS-Proper-Motion-Correction
+# AIPS-Dynamic-Phase-Centre-Tracking
 Description:  The purpose of this script is to automate the proper motion 
               correction of VLBI images using AIPS. It follows the process of 
               taking a calibrated data set, splitting it into an appropriate 
